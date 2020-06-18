@@ -19,3 +19,6 @@ print ("you made it")
 
 webUrl = arguments[1]
 print(webUrl)
+
+webPage = urllib.request.urlopen(webUrl).read(500)
+print(webPage)

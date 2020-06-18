@@ -1,5 +1,7 @@
 import urllib.request
 import sys
+import io
+import codecs
 
 
 print("doing something")
@@ -20,5 +22,16 @@ print ("you made it")
 webUrl = arguments[1]
 print(webUrl)
 
-webPage = urllib.request.urlopen(webUrl).read(500)
-print(webPage)
+request = urllib.request.urlopen(webUrl)
+contentTypeHeader = request.getheader('content-type')
+print(contentTypeHeader)
+
+webPage = request.read(1000000)
+webCode = webPage.decode('utf-8')
+
+f = io.open("/Users/andydeutsch/Files/Python/webgetter/webPage.htm","w+")
+f.write(webCode)
+f.close()
+
+
+

@@ -11,13 +11,13 @@ print(sys.argv)
 arguments = sys.argv
 argLength = len(sys.argv)
 
-print(argLength)
+print("Number of args: " + str(argLength))
 
 if argLength < 2:
-    print("need more args")
+    print("Needs more args")
     exit()
 
-print ("you made it")
+print ("There are enough args")
 
 webUrl = arguments[1]
 print(webUrl)

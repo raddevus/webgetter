@@ -3,12 +3,15 @@ import sys
 import io
 import codecs
 
-def multiply(x,y):
-    return x*y
-
-def getBytes():
-    print("I'm in getBytes")
-    return 55
+def getAllBytes(request):
+    allBytes = request.read(10000)
+    byteLength = len(allBytes)
+    while (byteLength > 0):
+        tempBytes = request.read(10000)
+        allBytes += tempBytes
+        byteLength = len(tempBytes)
+        print(byteLength)
+    return allBytes
 
 print("doing something")
 
@@ -27,21 +30,21 @@ print ("There are enough args")
 
 webUrl = arguments[1]
 
-request = urllib.request.urlopen(webUrl)
-contentTypeHeader = request.getheader('content-type')
+requestX = urllib.request.urlopen(webUrl)
+contentTypeHeader = requestX.getheader('content-type')
 contentTypeSplit = contentTypeHeader.split('=')
 contentType = contentTypeSplit[1]
-contentLength = request.getheader('content-length')
+contentLength = requestX.getheader('content-length')
 
 if contentLength is not None:
-    webPage = request.read(int(contentLength))
+    webPage = requestX.read(int(contentLength))
+    print("There is a content length!")
 else:
-    webPage = request.read(1000000)
+    webPage = getAllBytes(requestX)
+    print("There is not a content length!")
 
 webCode = webPage.decode(contentType)
 
 f = io.open("/Users/andydeutsch/Files/Python/webgetter/webPage.htm","w+")
 f.write(webCode)
 f.close()
-
-print(multiply(10.325,20))

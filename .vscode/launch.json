@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "args": ["https://google.com/"]
+            "args": ["https://yahoo.com"]
         }
     ]
 }

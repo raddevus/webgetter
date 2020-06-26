@@ -1,6 +1,7 @@
 
-def doThing(extra, number):
+def doThing( number):
     print ("it works")
+    print("number : " + str(number) )
     print (extra)
 
 
@@ -8,11 +9,14 @@ def doThing(extra, number):
 extra = 254
 print (extra)
 
-doThing("first", 3)
+doThing( 3)
 
+extra = "superstar"
+print (extra)
 class Member:
     def __init__(self,x):
         print("I am inited")
+        print ("extra in Member class : " + extra)
     
     def doThing(self):
         print ("did a Member thing")
